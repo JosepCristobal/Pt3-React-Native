@@ -7,13 +7,18 @@ import Api, {fetchData, configureAxios} from '../api';
 
 
 export default class App extends Component {
+  
+  componentWillMount(){
+    configureAxios()
+  }
+  
   render() {
     //configureAxios();
    // lista = fetchData();
     return (
       <Router>
         <Stack key="root">
-          <Scene key= "nasaImages" component ={NasaImages} title = "Images NASA"/>
+          <Scene key= "nasaImages" component ={NasaImages} title = "Images NASA" initial ={true}/>
 
         </Stack>
       </Router>  

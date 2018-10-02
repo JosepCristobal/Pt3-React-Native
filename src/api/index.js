@@ -5,6 +5,7 @@ import axios from 'axios'
 const BASE_URL = 'https://images-api.nasa.gov'
 
 export function configureAxios() {
+    console.log('AXIOS configurado correctamente')
     axios.defaults.baseURL = BASE_URL
 }
 
