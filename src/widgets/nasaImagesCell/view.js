@@ -6,17 +6,18 @@ export default class extends Component {
 
     static defaultProps = {
         nasaImage: null,
-        //onNasaImagePress: () => {},
+        onNasaImagePress: () => {},
     }
     
     render() {
         const { nasaImage } = this.props
         const image = nasaImage.item.links[0].href ? { uri: nasaImage.item.links[0].href } : 
         require('../../resources/images.jpeg');
+       
         
         return (
             <TouchableOpacity 
-                //onPress={ () => this.props.onHousePress(house) } 
+                onPress={ () => this.props.onNasaImagePress(nasaImage) } 
                 style={styles.cellContainer}
             >
                <Image
