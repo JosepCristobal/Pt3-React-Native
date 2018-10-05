@@ -1,9 +1,40 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, Animated, TouchableHighlight} from 'react-native'
 import styles from './styles'
 
 
 export default class extends React.Component {
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            imageExpanded: false,
+            imageHeight: new Animated.Value(300)
+        }
+    }
+    _onShowImage(){
+        if(this.state.imageExpanded){
+            Animated.timing(
+                this.state.imageHeight,
+                {
+                    duration: 500,
+                    toValue: 300,
+                }
+            ).start()
+            this.setState({imageExpanded: false})
+        }else{
+            Animated.timing(
+                this.state.imageHeight,
+                {
+                    duration: 500,
+                    toValue: 600,
+                }
+            ).start()
+            this.setState({imageExpanded: true})
+        }
+
+    }
+    
     render() {
         const { nasaImage } = this.props
         const image = nasaImage.item.links[0].href ? { uri: nasaImage.item.links[0].href } : 
@@ -16,7 +47,9 @@ export default class extends React.Component {
         
         return (
             <View style={styles.container}>
-                <Image source={image} resizeMode={'cover'} style={styles.imageContainer}/>
+                <TouchableHighlight onPress = {() => this._onShowImage()}>
+                    <Animated.Image source={image} resizeMode={'cover'} style={[styles.imageContainer, {height: this.state.imageHeight}]}/>
+                </TouchableHighlight>
                 <View >
                     <Text style={styles.textTitle}>{'Description: '}</Text>
                 </View>
