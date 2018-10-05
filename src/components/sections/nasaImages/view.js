@@ -1,73 +1,79 @@
 import React, { Component } from 'react'
-import { View, Text,TouchableOpacity ,FlatList} from 'react-native'
+import { View, Text,TouchableOpacity ,FlatList, ActivityIndicator} from 'react-native'
 import styles from './styles'
-import {NasaImagesCell} from '../../../widgets'
+import { NasaImagesCell } from '../../../widgets'
 import * as api from '../../../api'
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import * as NasaActions from '../../../redux/nasaImages/actions'
 
-export default class extends Component{
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            nasaList: [],
-            onNasaTapped: () => {},
-        }
-
-    }
+class NasaImages extends Component{
 
 
     componentDidMount(){
-        this.goToImagesNasa()
-    }
-
-    goToImagesNasa(){
-        api.fetchData().then(response  => {
-        //console.log("response:", response)
-       console.log("Images response:", response.data.collection.items[0].data[0])
-       // console.log("Images response: ", response.data.collection.items[0].links[0].href)
-        this.setState({nasaList: response.data.collection.items})
-    }).catch (error => {
-        this.setState({nasaList: []})
-        console.log(error)
-    })
+        this.props.fetchNasaList()
     }
 
     _onNasaTapped(nasaImage) {
-        //this.props.onNasaTapped(nasaImage)
-     //this.props.onNasaTapped(nasaImage)
-     //Actions.nasaImagesDetail({title: "Detalle Nasa" })
-     Actions.nasa({nasaImage: nasaImage});
-
+        this.props.onNasaTapped(nasaImage)
     }
-onNasaTapped(nasaImage){
-    console.log("Hola")
-    
-}
-    _renderItem(value, index){
-        //console.log('En el render item: ', value.item.data[0].center)
+
+    _renderItem(value){  
         return (
            < NasaImagesCell
-            nasaImage={value} 
-            onNasaImagePress={ v => this._onNasaTapped(v) }
+                nasaImage={value} 
+                onNasaImagePress={ v => this._onNasaTapped(v) }
             />
         )
     }
+    _renderActivityIndicator() {
+        if(!this.props.isFetching) {
+            return null
+        }
+        return (
+            <View style={{alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}>
+                <ActivityIndicator size={'large'} color={'black'} animating={true} />
+            </View>
+        )
+    }
+
 
     render() {
         return (
             <View style={styles.container}>
                <Text style= {{color:'green', textAlign:'center'}} >N A S A</Text>
                 <FlatList
-                    data = {this.state.nasaList}
+                    data = {this.props.list}
                     renderItem= { value => this._renderItem(value)}
-                    keyExtractor={(item,i) => 'cell' + item.id}
-                    extraData={this.state}
+                    keyExtractor={(item, i) => 'cell' + item.id}
+                    extraData={this.props}
                     numColumns={2}
                     style={{paddingTop: 10}}
                 />
+                { this._renderActivityIndicator() }
+
             </View>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isFetching: state.nasaImages.isFetching,
+        list: state.nasaImages.list,
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return{
+        fetchNasaList: () => {
+            dispatch(NasaActions.fetchNasaList())
+        },
+            onNasaTapped: (nasaImage) => {
+            Actions.nasa({nasaImage: nasaImage});   
+        }
+     }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NasaImages)

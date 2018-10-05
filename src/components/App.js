@@ -24,7 +24,7 @@ const sceneDefaultStyles = {
 
 const RightButton = props => (
   <TouchableOpacity style={{padding: 10}} onPress={ () => alert("Hola Actions") }>
-      <Text style={{color: 'white', fontWeight: 'bold'}}>{'Añadir'}</Text>
+      <Text style={{color: 'white', fontWeight: 'bold'}}>{'Add'}</Text>
   </TouchableOpacity>
 )
 
@@ -47,13 +47,13 @@ export default class App extends Component {
             component ={NasaImages} 
             title = "Images NASA" 
             {...sceneDefaultStyles}
+            renderRightButton={RightButton}
             initial ={true}
             />
 
             <Scene key= "nasa" 
             component = {NasaImagesDetail} 
             title = "Images NASA Detail"
-            renderRightButton={RightButton}
             {...sceneDefaultStyles}
             />
 

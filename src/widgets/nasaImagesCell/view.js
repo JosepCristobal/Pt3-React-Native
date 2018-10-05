@@ -30,6 +30,3 @@ export default class extends Component {
     }
      
 }
-{/* <TouchableOpacity>
-     <Text style = {{color:'red', textAlign:'center'}}>{value.item.data[0].description}</Text>
-     </TouchableOpacity>*/}
