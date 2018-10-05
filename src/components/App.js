@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {StatusBar, Platform, StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 import { Router, Scene, Stack, Actions } from 'react-native-router-flux';
-import {NasaImages, NasaImagesDetail} from './sections';
+import {NasaImages, NasaImagesDetail, NasaImagesAdd} from './sections';
 import * as api from '../api';
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { Provider, connect } from 'react-redux'
@@ -23,7 +23,7 @@ const sceneDefaultStyles = {
 }
 
 const RightButton = props => (
-  <TouchableOpacity style={{padding: 10}} onPress={ () => alert("Hola Actions") }>
+  <TouchableOpacity style={{padding: 10}} onPress={ () => Actions.nasaAdd() }>
       <Text style={{color: 'white', fontWeight: 'bold'}}>{'Add'}</Text>
   </TouchableOpacity>
 )
@@ -37,8 +37,6 @@ export default class App extends Component {
   }
   
   render() {
-    //configureAxios();
-   // lista = fetchData();
     return (
       <Provider store= {store}>
         <Router>
@@ -46,14 +44,20 @@ export default class App extends Component {
             <Scene key= "nasaImages" 
             component ={NasaImages} 
             title = "Images NASA" 
-            {...sceneDefaultStyles}
             renderRightButton={RightButton}
+            {...sceneDefaultStyles}
             initial ={true}
             />
 
             <Scene key= "nasa" 
             component = {NasaImagesDetail} 
             title = "Images NASA Detail"
+            {...sceneDefaultStyles}
+            />
+
+            <Scene key= "nasaAdd" 
+            component = {NasaImagesAdd} 
+            title = "Images NASA Add"
             {...sceneDefaultStyles}
             />
 
