@@ -32,7 +32,7 @@ export function fetchNasaList(){
             }else{
                 dispatch(setFetching(true))
             }
-            //console.log('AsyncStorage.getItem error ', error, 'result: ', result)
+        //console.log('AsyncStorage.getItem error ', error, 'result: ', result)
         })
         
         dispatch(setFetching(true))
