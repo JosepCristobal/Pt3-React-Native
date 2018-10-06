@@ -2,6 +2,7 @@
 Entrega de la práctica de React Native
 
 La práctica consiste en:
+
 Crear una aplicación con los siguientes ​requisitos​:
 - La app debe tener NECESARIAMENTE:
 - Pantalla con un listado usando FlatList y datos cargados desde el web
