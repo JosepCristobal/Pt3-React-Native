@@ -15,7 +15,7 @@ en las diapositivas del curso​ (Recomendado ​react-native-router-flux​)
 - Un formulario funcional (Aunque no persista los datos en nuestra API)
 - En caso de usar una API distinta o de añadir alguna funcionalidad extra, especificar en el Read.me del repositorio.
 
-# El tema escogido en la práctica ha sido el Transbordador Espacial Atlantis
+# El tema elegido en la práctica ha sido el Transbordador Espacial Atlantis
 
 - Las imagenes y los datos mostrados en la app son extraidos de la NASA en tiempo real.
 - Para no cargar la app, se han filtrado los datos a un año y un tema en concreto, 2009 y landing respectivamente.
