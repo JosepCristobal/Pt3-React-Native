@@ -46,7 +46,7 @@ export default class App extends Component {
             title = "Images NASA" 
             renderRightButton={RightButton}
             {...sceneDefaultStyles}
-            initial ={true}
+            
             />
 
             <Scene key= "nasa" 
@@ -59,6 +59,7 @@ export default class App extends Component {
             component = {NasaImagesAdd} 
             title = "Images NASA Add"
             {...sceneDefaultStyles}
+            initial ={true}
             />
 
           </Stack>
