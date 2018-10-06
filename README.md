@@ -22,3 +22,6 @@ en las diapositivas del curso​ (Recomendado ​react-native-router-flux​)
 - El link del WebService que se ha utilizado es: https://images-api.nasa.gov/search?q=Atlantis%20landing%2009
 - La documentación la podemos encontrar en : DOC https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf.
 - Se ha utilizado Axios para acceder a los WebServices.
+
+# Visitar la WiKi para más detalles.
+ -WiKi: [https://github.com/JosepCristobal/Pt3-React-Native/wiki/00---Home]
